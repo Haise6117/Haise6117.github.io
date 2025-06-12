@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>&lt;model-viewer&gt; template</title>
+    <meta charset="utf-8">
+    <meta name="description" content="&lt;model-viewer&gt; template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" href="./styles.css" rel="stylesheet"/>
+    <style>
+  /* Model viewer background */
+  model-viewer {
+    background-color: #F8E8CC; /* New background color */
+  }
+  </style>
+  </head>
+  <body>
+    <!-- <model-viewer> HTML element -->
+    <model-viewer src="DVE Ass 2 Rev.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="poster.webp" shadow-intensity="1" camera-orbit="28.23deg 80.96deg 0.8359m" field-of-view="30deg" id="Seal">
+      <button class="Hotspot" slot="hotspot-1" data-surface="24 0 24 23 38 0.777 0.090 0.133" data-visibility-attribute="visible" onmouseover="addhotspot1()" onmouseout="removehotspot1()">
+          <div class="HotspotAnnotation" id="hotspot1" style="visibility: hidden;">Magnet
+          </div>
+      </button><button class="Hotspot" slot="hotspot-2" data-surface="22 0 553 557 578 0.501 0.010 0.489" data-visibility-attribute="visible"onmouseover="addhotspot2()" onmouseout="removehotspot2()" >
+          <div class="HotspotAnnotation" id="hotspot2" style="visibility: hidden;">LCD Screen Unit</div>
+      </button><button class="Hotspot" slot="hotspot-3" data-surface="3 0 343 344 387 0.512 0.284 0.204" data-visibility-attribute="visible"onmouseover="addhotspot3()" onmouseout="removehotspot3()">
+          <div class="HotspotAnnotation" id="hotspot3" style="visibility: hidden;">Base</div>
+      </button><button class="Hotspot" slot="hotspot-4" data-surface="0 0 13 6 14 0.041 0.530 0.429" data-visibility-attribute="visible"onmouseover="addhotspot4()" onmouseout="removehotspot4()">
+          <div class="HotspotAnnotation" id="hotspot4" style="visibility: hidden;">Scanner</div>
+      </button><button class="Hotspot" slot="hotspot-5" data-surface="23 0 2558 2559 2642 0.516 0.430 0.054" data-visibility-attribute="visible"onmouseover="addhotspot5()" onmouseout="removehotspot5()">
+          <div class="HotspotAnnotation" id="hotspot5" style="visibility: hidden;">Leaf Face</div>
+      </button>
+      <div class="progress-bar hide" slot="progress-bar">
+          <div class="update-bar"></div>
+      </div>
+      <button slot="ar-button" id="ar-button">
+          View in your space
+      </button>
+      <div id="ar-prompt">
+          <img src="ar_hand_prompt.png">
+      </div>
+    
+
+      
+    <style>
+      html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #F8E8CC;
+  }
+  .controls-container {
+    position: absolute;
+    top: 20%; /* Adjust this value to move it further down */
+    right: 20px;
+    /* Remove transform so it doesn't re-center */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #F8E8CC;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    font-family: sans-serif;
+  }
+
+  .controls-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .controls-group div {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 2px;
+  }
+
+  .controls-group button {
+    font-size: 12px;
+    padding: 6px 10px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .controls-group button:hover {
+    background-color: #3e9143;
+  }
+
+  @media screen and (max-width: 768px) {
+  .controls-container {
+    position: fixed;
+    bottom: -10px; /* Adjust as needed */
+    top: auto;
+    right: 0;
+    left: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 6px;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(0.9); /* Scale down entire container slightly */
+  }
+
+  .controls-group {
+    margin: 4px;
+    flex: 1 1 80px;
+    align-items: center;
+  }
+
+  .controls-group div {
+    font-size: 10px;
+  }
+
+  .controls-group button {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+}
+</style>
+
+<div class="controls-container">
+  <div class="controls-group">
+    <div>View:</div>
+    <button onclick="setOrbit('-0.9407deg 81.27deg 0.8359m')">Front</button>
+    <button onclick="setOrbit('0.00007295deg 0.6771deg 0.8359m')">Top</button>
+    <button onclick="setOrbit('-0.6271deg 179.4deg 0.8359m')">Bottom</button>
+    <button onclick="setOrbit('92.2deg 97.55deg 0.8359m')">Right</button>
+    <button onclick="setOrbit('-92.51deg 98.18deg 0.8359m')">Left</button>
+    <button onclick="setOrbit('-178.7deg 94.73deg 0.8359m')">Back</button>
+  </div>
+
+  <div class="controls-group">
+    <div>Variant:</div>
+    <button onclick="VBtn01()">01</button>
+    <button onclick="VBtn02()">02</button>
+    <button onclick="VBtn03()">03</button>
+  </div>
+
+  <div class="controls-group">
+    <div>Animation:</div>
+    <button onclick="Btn01()">Exploded View</button>
+    <button onclick="Btn02()">Magnet function</button>
+    <button onclick="Btn03()">Screen Off and On</button>
+    <button onclick="pauseAnimation()">Pause</button>
+  </div>
+</div>
+
+      </div>
+
+
+    </model-viewer>  
+
+    <Script>
+      function setOrbit(orbit) {
+        document.getElementById('Seal').cameraOrbit=orbit;
+      }
+    </Script>
+
+    <script>
+      function addhotspot1(){
+        document.getElementById("hotspot1").style.visibility="visible"
+      }
+      function removehotspot1(){
+        document.getElementById("hotspot1").style.visibility="hidden";
+      }
+
+      function addhotspot2(){
+        document.getElementById("hotspot2").style.visibility="visible"
+      }
+      function removehotspot2(){
+        document.getElementById("hotspot2").style.visibility="hidden";
+      }
+
+      function addhotspot3(){
+        document.getElementById("hotspot3").style.visibility="visible"
+      }
+      function removehotspot3(){
+        document.getElementById("hotspot3").style.visibility="hidden";
+      }
+
+        function addhotspot4(){
+        document.getElementById("hotspot4").style.visibility="visible"
+      }
+      function removehotspot4(){
+        document.getElementById("hotspot4").style.visibility="hidden";
+      }
+
+       function addhotspot5(){
+        document.getElementById("hotspot5").style.visibility="visible"
+      }
+      function removehotspot5(){
+        document.getElementById("hotspot5").style.visibility="hidden";
+      }
+    </script>
+
+    <script>
+      function VBtn01(){
+        document.getElementById('Seal').variantName = "V3"
+      }
+       function VBtn02(){
+        document.getElementById('Seal').variantName = "V1"
+      }
+       function VBtn03(){
+        document.getElementById('Seal').variantName = "V2"
+      }
+    </script>
+
+    <script>
+      //javascript that is call "Btn01()" and "Btn02()" and "Btn03()" that find the html element ID call "Seal" and play and loop the element with specific "animationName" 
+      function Btn01(){
+        document.getElementById('Seal').pause();
+        document.getElementById('Seal').animationName="Exploded";
+        document.getElementById('Seal').play();
+      }
+      function Btn02(){
+        document.getElementById('Seal').pause();
+        document.getElementById('Seal').animationName="Magnet";
+        document.getElementById('Seal').play();
+      }
+       function Btn03(){
+        document.getElementById('Seal').pause();
+        document.getElementById('Seal').animationName="Screen";
+        document.getElementById('Seal').play();
+      }
+      function pauseAnimation(){
+        document.getElementById('Seal').pause();
+      }
+    </script>
+
+
+
+    <script src="script.js"></script>
+    <!-- Loads <model-viewer> for browsers: -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+  </body>
+</html>
